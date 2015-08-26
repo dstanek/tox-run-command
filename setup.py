@@ -5,7 +5,7 @@ setup(
     name='tox-run-command',
     description='tox plugin to run an arbitrary commands in a virtualenv',
     long_description=open('README.rst').read(),
-    version='0.1',
+    version='0.2',
     py_modules=['tox_run_command'],
     entry_points={'tox': ['run_command = tox_run_command']},
     install_requires=['tox>=2.0'],

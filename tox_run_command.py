@@ -1,17 +1,9 @@
-import copy
-
 import tox.config
 from tox import hookimpl
 
 
-class FakeSectionReader(tox.config.SectionReader):
-    """A hack to reuse the SectionReader logic to parse command lines."""
-
-    def __init__(self):
-        tox.config.SectionReader.__init__(self, None, None)
-
-    def getargvlist(self, command):
-        return tox.config._ArgvlistReader.getargvlist(self, command)
+def getargvlist(reader, command):
+    return tox.config._ArgvlistReader.getargvlist(reader, command)
 
 
 @hookimpl
@@ -23,8 +15,7 @@ def tox_addoption(parser):
 def tox_configure(config):
     alternative_cmd = config.option.run_command
     if alternative_cmd:
-        reader = FakeSectionReader()
-        alternative_cmd = FakeSectionReader().getargvlist(alternative_cmd)
         for env in config.envlist:
-            # deepcopy is needed because tox updates the lists in place
-            config.envconfigs[env].commands = copy.deepcopy(alternative_cmd)
+            reader = config.envconfigs['py27']._reader
+            env_commands = getargvlist(reader, alternative_cmd)
+            config.envconfigs[env].commands = env_commands

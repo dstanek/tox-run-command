@@ -16,6 +16,8 @@ Notes:
   does)
 * The commands from your tox.ini will not be run and instead the command
   you wanted to run is run
+* `tox substitutions`_ will also work.
+  (e.g. ``tox -e py27 --run-command "server --config={homedir}/server.conf"``)
 
 Why?
 ----
@@ -34,3 +36,4 @@ to do this, I created one using the new `tox plugin API`_.
 .. _tox: https://testrun.org/tox/latest/
 .. _Keystone: http://docs.openstack.org/developer/keystone/
 .. _tox plugin API: https://testrun.org/tox/latest/plugins.html
+.. _tox substitutions: https://testrun.org/tox/latest/config.html#substitutions
