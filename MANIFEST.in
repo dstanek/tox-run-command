@@ -1,0 +1,3 @@
+exclude example_tox_config
+exclude tests.py
+exclude tox.ini
