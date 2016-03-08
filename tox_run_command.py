@@ -16,6 +16,6 @@ def tox_configure(config):
     alternative_cmd = config.option.run_command
     if alternative_cmd:
         for env in config.envlist:
-            reader = config.envconfigs['py27']._reader
+            reader = config.envconfigs[env]._reader
             env_commands = getargvlist(reader, alternative_cmd)
             config.envconfigs[env].commands = env_commands
